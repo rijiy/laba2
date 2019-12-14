@@ -44,8 +44,8 @@ void Runner::heat(vector <int> &level){
 
 time_t Runner::timer1(vector <int> &level){
     auto start = std::chrono::system_clock::now();
-    for (int j = 0; j < 1000; j++) {
-        for (unsigned int i = 0; i < level.size(); i++) {
+    for (unsigned int j = 0; j < 1000; j++) {
+        for (unsigned int i = 0; i < level.size(); ++i) {
             level[i];
         }
     }
@@ -57,8 +57,8 @@ time_t Runner::timer1(vector <int> &level){
 
 time_t Runner::timer2(vector <int> &level){
     auto start = std::chrono::system_clock::now();
-    for (int j = 0; j < 1000; j++) {
-        for (unsigned int i =level.size()-1 ; i >0 ; i--) {
+    for (unsigned int j = 0; j < 1000; j++) {
+        for (int i =level.size()-1 ; i >0 ; --i) {
             level[i];
         }
     }
@@ -71,8 +71,8 @@ time_t Runner::timer2(vector <int> &level){
 time_t Runner::timer3(vector <int> &level){
     auto start = std::chrono::system_clock::now();
     std::random_shuffle(level.begin(), level.end());
-    for (int j = 0; j < 1000; j++) {
-        for (unsigned int i = 0; i < level.size(); i++) {
+    for (unsigned int j = 0; j < 1000; j++) {
+        for (unsigned int i = 0; i < level.size(); ++i) {
             level[i];
         }
     }
@@ -88,7 +88,9 @@ void Runner::run() {
         create(level, levels[i]);
         heat(level);
         std::cout << "Эксперимент №" << i + 1 <<
-        " time  = " << timer1(level) << " "<< timer2(level)
-        << " "<< timer3(level) << std::endl;
+         "\nРазмер буфера = "<< levels[i] << "mb\nВремя =\n  "
+         "Прямой проход: " << timer1(level) << "\n  Обратный "
+         "проход: "<< timer2(level)
+         << "\n  Случайный проход: "<< timer3(level) << std::endl;
     }
 }
