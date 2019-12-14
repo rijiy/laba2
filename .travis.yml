@@ -20,4 +20,3 @@ jobs:
 
 notifications:
     email: false
-
